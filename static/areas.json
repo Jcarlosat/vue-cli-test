@@ -1,0 +1,12 @@
+{
+  "areas": [
+    {
+      "id": 1,
+      "name": "hokkaido"
+    },
+    {
+      "id": 2,
+      "name": "aomori"
+    }
+  ]
+}
