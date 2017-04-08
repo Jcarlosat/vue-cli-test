@@ -1,31 +1,17 @@
 <template>
   <div class="hello">
-    <select v-model="company.area_id">
-      <option v-for="option in options" v-bind:value="option.id">
-        {{ option.name }}
-      </option>
-    </select>
-    <span>Selected: {{ company.area_id }}</span>
+    {{ message }}
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: 'hello',
   data () {
     return {
-      company: {
-        area_id: 0
-      }
+      message: 'Hello'
     }
-  },
-  created () {
-    axios.get('/static/areas.json').then(res => { this.options = res.data.areas })
-    axios.get('/static/company.json').then(res => { this.company = res.data.company })
   }
-
 }
 </script>
 

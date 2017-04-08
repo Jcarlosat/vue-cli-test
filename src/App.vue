@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <div class="navigation">
+      <router-link to="/">hello</router-link>
+      <router-link to="/select">select</router-link>
+      <router-link to="/validation">validation</router-link>
+    </div>
+    <hr>
     <router-view></router-view>
   </div>
 </template>
