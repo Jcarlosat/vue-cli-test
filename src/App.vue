@@ -4,6 +4,7 @@
       <router-link to="/">hello</router-link>
       <router-link to="/select">select</router-link>
       <router-link to="/validation">validation</router-link>
+      <router-link to="/child-model">child-model</router-link>
     </div>
     <hr>
     <router-view></router-view>

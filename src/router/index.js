@@ -20,6 +20,11 @@ export default new Router({
       path: '/validation',
       name: 'ValidationTest',
       component: require('@/components/Validation')
+    },
+    {
+      path: '/child-model',
+      name: 'ChildModel',
+      component: require('@/components/ChildModel')
     }
   ]
 })

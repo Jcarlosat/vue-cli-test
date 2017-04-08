@@ -1,10 +1,13 @@
 <template>
   <div class="hello">
     <div v-for="account in accounts">
-      <input v-model="account.email" :class="{'has-error': getValidationMessage(account.email, 'required|email')}">
+      <input
+         v-model="account.email"
+         @input="account.validationStarted = true"
+         :class="{'has-error': (validationStarted || account.validationStarted ) && getValidationMessage(account, 'required|email')}">
       <p>Inputed: {{ account.email }}</p>
-      <p v-if="getValidationMessage(account.email, 'required|email')" class="alert-danger">
-        {{ getValidationMessage(account.email, 'required|email') }}
+      <p v-if="(validationStarted || account.validationStarted ) && getValidationMessage(account, 'required|email')" class="alert-danger">
+        {{ getValidationMessage(account, 'required|email') }}
       </p>
     </div>
 
@@ -20,13 +23,17 @@ import Validator from 'validatorjs'
 export default {
   data () {
     return {
-      accounts: [{email: ''}]
+      accounts: [{
+        email: '',
+        validationStarted: false
+      }],
+      validationStarted: false
     }
   },
   methods: {
-    getValidationMessage (value, rules) {
+    getValidationMessage (account, rules) {
       var validator = new Validator({
-        email: value
+        email: account.email
       }, {
         email: rules
       })
@@ -38,15 +45,28 @@ export default {
       }
     },
     addAccount () {
-      this.accounts.push({email: ''})
+      this.accounts.push({
+        email: '',
+        validationStarted: false
+      })
     },
     register () {
-      var message = this.getValidationMessage(this.accounts[0].email, 'required|email')
-      if (message) {
-        alert(message)
+      this.validationStarted = true
+
+      var validationFailed = false
+      var validationMessages = []
+      this.accounts.forEach(account => {
+        var message = this.getValidationMessage(account, 'required|email')
+        if (message) {
+          validationFailed = true
+          validationMessages.push(message)
+        }
+      })
+      if (validationFailed) {
+        alert(validationMessages)
         return false
       }
-      alert('Hello, ' + this.email)
+      alert('Hello, ' + this.accounts)
     }
   }
 }
