@@ -6,6 +6,7 @@
       <router-link to="/validation">validation</router-link>
       <router-link to="/child-model">child-model</router-link>
       <router-link to="/vee-validation">vee-validation</router-link>
+      <router-link to="/vee-validation-simple">vee-validation-simple</router-link>
     </div>
     <hr>
     <router-view></router-view>

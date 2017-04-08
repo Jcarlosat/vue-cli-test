@@ -30,6 +30,11 @@ export default new Router({
       path: '/vee-validation',
       name: 'VeeValidation',
       component: require('@/components/VeeValidation')
+    },
+    {
+      path: '/vee-validation-simple',
+      name: 'VeeValidationSimple',
+      component: require('@/components/VeeValidationSimple')
     }
   ]
 })

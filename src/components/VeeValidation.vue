@@ -1,15 +1,18 @@
 <template>
   <div class="hello">
+    <div v-for="(account, i) in accounts">
+      <input
+         :name="'email' + i"
+         v-model="account.email"
+         v-validate="'required|email'"
+         :class="{'has-error': errors.has('email' + i)}">
+      <p>value: {{ account.email }}</p>
+      <p v-if="errors.has('email' + i)" class="alert-danger">
+        {{ errors.first('email' + i) }}
+      </p>
+    </div>
 
-    <input
-       name="email"
-       v-model="account.email"
-       v-validate="'required|email'"
-       :class="{'has-error': errors.has('email')}">
-    <p>value: {{ account.email }}</p>
-    <p v-if="errors.has('email')" class="alert-danger">
-      {{ errors.first('email') }}
-    </p>
+    <button @click="addAccount">Add Account</button>
 
     <button @click="register">Register</button>
   </div>
@@ -24,17 +27,16 @@ Vue.use(VeeValidate)
 export default {
   data () {
     return {
-      account: {
+      accounts: [{
         email: ''
-      }
+      }]
     }
   },
   methods: {
 
     addAccount () {
       this.accounts.push({
-        email: '',
-        validationStarted: false
+        email: ''
       })
     },
 
