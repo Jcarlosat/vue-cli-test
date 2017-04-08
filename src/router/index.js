@@ -25,6 +25,11 @@ export default new Router({
       path: '/child-model',
       name: 'ChildModel',
       component: require('@/components/ChildModel')
+    },
+    {
+      path: '/vee-validation',
+      name: 'VeeValidation',
+      component: require('@/components/VeeValidation')
     }
   ]
 })
